@@ -95,6 +95,7 @@ Untuk menjaga kode tetap rapi dan mempermudah pembagian kerja kelompok, aplikasi
 ├── 📄 searching.go  # Algoritma Sequential Search & Binary Search
 ├── 📄 sorting.go    # Algoritma Selection Sort & Insertion Sort
 └── 📄 ui.go         # Tampilan tabel, statistik, dan cetak menu
+```
 ---
 
 ## Daftar Fungsi / Prosedur
