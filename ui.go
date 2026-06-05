@@ -17,7 +17,6 @@ func tampilkanMenu() {
 	fmt.Print("Pilih menu (0-6): ")
 }
 
-
 func tampilkanTabel(portofolio [NMAX]Investasi, jumlahData int) {
 	var i int
 	fmt.Println("\n==========================================================================================================")
@@ -36,4 +35,21 @@ func tampilkanTabel(portofolio [NMAX]Investasi, jumlahData int) {
 		)
 	}
 	fmt.Println("==========================================================================================================\n")
+}
+
+func tampilkanStatistik(portofolio [NMAX]Investasi, jumlahData int) {
+	var totalModal, totalNilaiTerkini, totalKeuntungan float64
+	var i int
+
+	for i = 0; i < jumlahData; i++ {
+		totalModal += portofolio[i].modalAwal
+		totalNilaiTerkini += portofolio[i].hargaTerkini
+		totalKeuntungan += portofolio[i].keuntunganRupiah
+	}
+
+	fmt.Println("================ RINGKASAN STATISTIK ===============")
+	fmt.Printf("Total Modal Keseluruhan : Rp %.2f\n", totalModal)
+	fmt.Printf("Total Nilai Terkini     : Rp %.2f\n", totalNilaiTerkini)
+	fmt.Printf("Total Keuntungan/Rugi   : Rp %.2f\n", totalKeuntungan)
+	fmt.Println("====================================================\n")
 }
