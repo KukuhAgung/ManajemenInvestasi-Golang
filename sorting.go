@@ -23,3 +23,26 @@ func selectionSortNilaiInvestasi(portfolio *[NMAX]Investasi, jumlahData int, isD
 		}
 	}
 }
+
+func insertionSortPersentase(portofolio *[NMAX]Investasi, jumlahData int, isDescending bool) {
+	var i, j int
+	var key Investasi
+
+	for i = 1; i < jumlahData; i++ {
+		key = (*portofolio)[i]
+		j = i - 1
+
+		if isDescending {
+			for j >= 0 && (*portofolio)[j].persentaseKeuntungan < key.persentaseKeuntungan {
+				(*portofolio)[j+1] = (*portofolio)[j]
+				j--
+			}
+		} else {
+			for j >= 0 && (*portofolio)[j].persentaseKeuntungan > key.persentaseKeuntungan {
+				(*portofolio)[j+1] = (*portofolio)[j]
+				j--
+			}
+		}
+		(*portofolio)[j+1] = key
+	}
+}

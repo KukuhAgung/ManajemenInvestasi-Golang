@@ -25,6 +25,7 @@ func main() {
 				fmt.Println("\nPortofolio masih kosong. Silakan tambah data terlebih dahulu.")
 			} else {
 				tampilkanTabel(portofolio, jumlahData)
+				tampilkanStatistik(portofolio, jumlahData)
 			}
 
 		case 2:
@@ -35,6 +36,7 @@ func main() {
 			fmt.Println("\n--- UBAH DATA ASET ---")
 			fmt.Print("Masukkan ID Aset yang ingin diubah harganya: ")
 			fmt.Scan(&idTarget)
+			ubahAset(&portofolio, jumlahData, idTarget)
 
 		case 4:
 			fmt.Println("\n--- HAPUS DATA ASET ---")

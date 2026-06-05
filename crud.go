@@ -25,6 +25,8 @@ func tambahAset(portfolio *[NMAX]Investasi, jumlahData *int) {
 	(*portfolio)[i].keuntunganRupiah = 0.0
 	(*portfolio)[i].persentaseKeuntungan = 0.0
 
+	hitungKeuntungan(&(*portfolio)[i])
+
 	*jumlahData++
 	fmt.Println("Sukses: Aset baru berhasil ditambahkan.")
 }
@@ -45,4 +47,38 @@ func hapusAset(portfolio *[NMAX]Investasi, jumlahData *int, id int) {
 	*jumlahData--
 
 	fmt.Println("Sukses: Aset berhasil dihapus secara manual.")
+}
+
+func ubahAset(portofolio *[NMAX]Investasi, jumlahData int, id int) {
+	var i int
+	var ditemukan bool = false
+
+	for i = 0; i < jumlahData; i++ {
+		if portofolio[i].id == id {
+			ditemukan = true
+			fmt.Printf("Aset ditemukan: %s\n", portofolio[i].namaAset)
+			
+			var jenisBaru string
+			fmt.Print("Masukkan Jenis Aset baru (opsional, ketik '-' jika tidak diubah): ")
+			fmt.Scan(&jenisBaru)
+			if jenisBaru != "-" {
+				portofolio[i].jenisAset = jenisBaru
+			}
+
+			var hargaBaru float64
+			fmt.Print("Masukkan Harga Terkini baru: ")
+			fmt.Scan(&hargaBaru)
+			portofolio[i].hargaTerkini = hargaBaru
+			portofolio[i].nilaiInvestasi = hargaBaru
+
+			hitungKeuntungan(&portofolio[i])
+			
+			fmt.Println("Data aset berhasil diperbarui!")
+			break
+		}
+	}
+
+	if !ditemukan {
+		fmt.Println("Aset dengan ID tersebut tidak ditemukan.")
+	}
 }
