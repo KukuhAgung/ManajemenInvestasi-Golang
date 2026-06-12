@@ -17,7 +17,7 @@ func tampilkanMenu() {
 	fmt.Print("Pilih menu (0-6): ")
 }
 
-func tampilkanTabel(portofolio [NMAX]Investasi, jumlahData int) {
+func tampilkanTabel(portofolio tabInvestasi, jumlahData int) {
 	var i int
 	fmt.Println("\n==========================================================================================================")
 	fmt.Printf("%-4s | %-30s | %-11s | %-15s | %-15s | %s\n", 
@@ -37,7 +37,7 @@ func tampilkanTabel(portofolio [NMAX]Investasi, jumlahData int) {
 	fmt.Println("==========================================================================================================\n")
 }
 
-func tampilkanStatistik(portofolio [NMAX]Investasi, jumlahData int) {
+func tampilkanStatistik(portofolio tabInvestasi, jumlahData int) {
 	var totalModal, totalNilaiTerkini, totalKeuntungan float64
 	var i int
 

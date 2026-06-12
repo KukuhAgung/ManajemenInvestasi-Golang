@@ -1,7 +1,8 @@
 package main
 
-func selectionSortNilaiInvestasi(portfolio *[NMAX]Investasi, jumlahData int, isDescending bool) {
+func selectionSortNilaiInvestasi(portfolio *tabInvestasi, jumlahData int, isDescending bool) {
 	var i, j, targetIdx int
+	var temp Investasi
 
 	for i = 0; i < jumlahData-1; i++ {
 		targetIdx = i
@@ -19,12 +20,14 @@ func selectionSortNilaiInvestasi(portfolio *[NMAX]Investasi, jumlahData int, isD
 		}
 
 		if targetIdx != i {
-			(*portfolio)[i], (*portfolio)[targetIdx] = (*portfolio)[targetIdx], (*portfolio)[i]
+			temp = (*portfolio)[i]
+			(*portfolio)[i] = (*portfolio)[targetIdx]
+			(*portfolio)[targetIdx] = temp
 		}
 	}
 }
 
-func insertionSortPersentase(portofolio *[NMAX]Investasi, jumlahData int, isDescending bool) {
+func insertionSortPersentase(portofolio *tabInvestasi, jumlahData int, isDescending bool) {
 	var i, j int
 	var key Investasi
 

@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	var portofolio [NMAX]Investasi = dummyData
+	var portofolio tabInvestasi = dummyData
 	var jumlahData int = 5
 
 	var menu int
