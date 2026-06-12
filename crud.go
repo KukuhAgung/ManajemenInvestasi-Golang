@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func tambahAset(portfolio *[NMAX]Investasi, jumlahData *int) {
+func tambahAset(portfolio *tabInvestasi, jumlahData *int) {
 	var i int
 	if *jumlahData >= NMAX {
 		fmt.Println("Gagal: Kapasitas penyimpanan portofolio sudah penuh!")
@@ -31,7 +31,7 @@ func tambahAset(portfolio *[NMAX]Investasi, jumlahData *int) {
 	fmt.Println("Sukses: Aset baru berhasil ditambahkan.")
 }
 
-func hapusAset(portfolio *[NMAX]Investasi, jumlahData *int, id int) {
+func hapusAset(portfolio *tabInvestasi, jumlahData *int, id int) {
 	var idx int
 	idx = sequentialSearchID(*portfolio, *jumlahData, id)
 
@@ -49,7 +49,7 @@ func hapusAset(portfolio *[NMAX]Investasi, jumlahData *int, id int) {
 	fmt.Println("Sukses: Aset berhasil dihapus secara manual.")
 }
 
-func ubahAset(portofolio *[NMAX]Investasi, jumlahData int, id int) {
+func ubahAset(portofolio *tabInvestasi, jumlahData int, id int) {
 	var i int
 	var ditemukan bool = false
 

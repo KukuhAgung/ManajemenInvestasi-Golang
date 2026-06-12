@@ -1,6 +1,6 @@
 package main
 
-func sequentialSearchNama(portofolio [NMAX]Investasi, jumlahData int, keyword string) int {
+func sequentialSearchNama(portofolio tabInvestasi, jumlahData int, keyword string) int {
 	var i int
 	for i = 0; i < jumlahData; i++ {
 		if portofolio[i].namaAset == keyword {
@@ -10,7 +10,7 @@ func sequentialSearchNama(portofolio [NMAX]Investasi, jumlahData int, keyword st
 	return -1
 }
 
-func sequentialSearchID(portofolio [NMAX]Investasi, jumlahData int, id int) int {
+func sequentialSearchID(portofolio tabInvestasi, jumlahData int, id int) int {
 	var i int
 	for i = 0; i < jumlahData; i++ {
 		if portofolio[i].id == id {
@@ -20,7 +20,7 @@ func sequentialSearchID(portofolio [NMAX]Investasi, jumlahData int, id int) int 
 	return -1
 }
 
-func sortUntukBinarySearch(portofolio *[NMAX]Investasi, jumlahData int) {
+func sortUntukBinarySearch(portofolio *tabInvestasi, jumlahData int) {
 	var i, j int
 	for i = 0; i < jumlahData-1; i++ {
 		for j = 0; j < jumlahData-i-1; j++ {
@@ -31,18 +31,18 @@ func sortUntukBinarySearch(portofolio *[NMAX]Investasi, jumlahData int) {
 	}
 }
 
-func binarySearchJenis(portofolio [NMAX]Investasi, jumlahData int, keyword string) int {
+func binarySearchJenis(portofolio tabInvestasi, jumlahData int, keyword string) int {
 	var left, right, mid int
 	left = 0
 	right = jumlahData - 1
 
 	for left <= right {
-		mid = left + (right - left) / 2
+		mid = left + (right-left)/2
 
 		if portofolio[mid].jenisAset == keyword {
 			return mid
 		}
-		
+
 		if portofolio[mid].jenisAset < keyword {
 			left = mid + 1
 		} else {
