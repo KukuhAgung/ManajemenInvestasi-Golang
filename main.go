@@ -9,6 +9,7 @@ func main() {
 	var menu int
 	var idx, idTarget int
 	var keyword string
+	var lanjut bool
 
 	for {
 		tampilkanMenu()
@@ -31,18 +32,21 @@ func main() {
 		case 2:
 			fmt.Println("\n--- TAMBAH DATA ASET ---")
 			tambahAset(&portofolio, &jumlahData)
+			tampilkanTabel(portofolio, jumlahData)
 
 		case 3:
 			fmt.Println("\n--- UBAH DATA ASET ---")
 			fmt.Print("Masukkan ID Aset yang ingin diubah harganya: ")
 			fmt.Scan(&idTarget)
 			ubahAset(&portofolio, jumlahData, idTarget)
+			tampilkanTabel(portofolio, jumlahData)
 
 		case 4:
 			fmt.Println("\n--- HAPUS DATA ASET ---")
 			fmt.Print("Masukkan ID Aset yang ingin dihapus: ")
 			fmt.Scan(&idTarget)
 			hapusAset(&portofolio, &jumlahData, idTarget)
+			tampilkanTabel(portofolio, jumlahData)
 
 		case 5:
 			fmt.Println("\n--- CARI DATA ASET ---")
@@ -65,7 +69,6 @@ func main() {
 				fmt.Print("Masukkan Jenis Aset yang dicari: ")
 				fmt.Scan(&keyword)
 				
-				// SYARAT MUTLAK: Urutkan dulu sebelum Binary Search!
 				sortUntukBinarySearch(&portofolio, jumlahData)
 				
 				idx = binarySearchJenis(portofolio, jumlahData, keyword)
@@ -89,9 +92,11 @@ func main() {
 			if subMenu == 1 {
 				selectionSortNilaiInvestasi(&portofolio, jumlahData, false) // false = Ascending
 				fmt.Println("Sukses: Portofolio berhasil diurutkan berdasarkan Nilai Investasi (Terkecil ke Terbesar).")
+				tampilkanTabel(portofolio, jumlahData)
 			} else if subMenu == 2 {
 				insertionSortPersentase(&portofolio, jumlahData, true) // true = Descending (Profit tertinggi di atas)
 				fmt.Println("Sukses: Portofolio berhasil diurutkan berdasarkan Persentase Profit (Terbesar ke Terkecil).")
+				tampilkanTabel(portofolio, jumlahData)
 			} else {
 				fmt.Println("Pilihan pengurutan tidak valid.")
 			}
@@ -99,6 +104,11 @@ func main() {
 			fmt.Println("\nPilihan salah! Silakan masukkan angka menu yang valid (0-6).")
 		}
 
-		fmt.Println()
+		if menu != 0 { 
+			lanjut = ulangProgram()
+			if !lanjut {
+				break
+			}
+		}
 	}
 }

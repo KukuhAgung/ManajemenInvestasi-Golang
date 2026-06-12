@@ -4,7 +4,7 @@ import "fmt"
 
 func tampilkanMenu() {
 	fmt.Println("======================================================")
-	fmt.Println("       📈 APLIKASI MANAJEMEN INVESTASI 📉")
+	fmt.Println("            APLIKASI MANAJEMEN INVESTASI 			")
 	fmt.Println("======================================================")
 	fmt.Println("[1] Lihat Portofolio & Laporan Statistik")
 	fmt.Println("[2] Tambah Data Investasi Baru")
@@ -52,4 +52,21 @@ func tampilkanStatistik(portofolio [NMAX]Investasi, jumlahData int) {
 	fmt.Printf("Total Nilai Terkini     : Rp %.2f\n", totalNilaiTerkini)
 	fmt.Printf("Total Keuntungan/Rugi   : Rp %.2f\n", totalKeuntungan)
 	fmt.Println("====================================================\n")
+}
+
+func ulangProgram() bool {
+	var pilihan int
+	fmt.Println("Apakah Anda ingin melakukan aktivitas lain?")
+	fmt.Println("[1] Ya, kembali ke menu utama")
+	fmt.Println("[0] Tidak, Keluar Aplikasi")
+	fmt.Print("Pilih (0/1): ")
+	fmt.Scan(&pilihan)
+
+	if pilihan == 0 {
+		fmt.Println("\nTerima kasih telah menggunakan aplikasi ini. Sampai jumpa!")
+		return false
+	}
+	
+	fmt.Println() 
+	return true 
 }
