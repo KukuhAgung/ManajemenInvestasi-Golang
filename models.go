@@ -37,7 +37,7 @@ var dummyData = [NMAX]Investasi{
 	{
 		id:                   3,
 		namaAset:             "Sucorinvest Equity Fund",
-		jenisAset:            "Reksa Dana",
+		jenisAset:            "ReksaDana",
 		modalAwal:            2000000.0,
 		hargaTerkini:         2300000.0,
 		nilaiInvestasi:       2300000.0,
