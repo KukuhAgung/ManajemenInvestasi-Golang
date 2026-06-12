@@ -45,22 +45,56 @@ func main() {
 			hapusAset(&portofolio, &jumlahData, idTarget)
 
 		case 5:
-			fmt.Println("\n--- CARI DATA ASET (SEQUENTIAL) ---")
-			fmt.Print("Masukkan nama aset yang dicari: ")
-			fmt.Scan(&keyword)
-			
-			idx = sequentialSearchNama(portofolio, jumlahData, keyword)
-			if idx >= 0 {
-				fmt.Printf("Sukses: Aset ditemukan pada indeks array ke-%d.\n", idx)
+			fmt.Println("\n--- CARI DATA ASET ---")
+			fmt.Println("1. Cari Berdasarkan Nama (Sequential Search)")
+			fmt.Println("2. Cari Berdasarkan Jenis (Binary Search)")
+			fmt.Print("Pilih metode pencarian (1/2): ")
+			var subMenu int
+			fmt.Scan(&subMenu)
+
+			if subMenu == 1 {
+				fmt.Print("Masukkan Nama Aset yang dicari: ")
+				fmt.Scan(&keyword)
+				idx = sequentialSearchNama(portofolio, jumlahData, keyword)
+				if idx >= 0 {
+					fmt.Printf("Sukses: Aset ditemukan pada indeks array ke-%d.\n", idx)
+				} else {
+					fmt.Println("Gagal: Aset dengan nama tersebut tidak ditemukan.")
+				}
+			} else if subMenu == 2 {
+				fmt.Print("Masukkan Jenis Aset yang dicari: ")
+				fmt.Scan(&keyword)
+				
+				// SYARAT MUTLAK: Urutkan dulu sebelum Binary Search!
+				sortUntukBinarySearch(&portofolio, jumlahData)
+				
+				idx = binarySearchJenis(portofolio, jumlahData, keyword)
+				if idx >= 0 {
+					fmt.Printf("Sukses: Aset ditemukan. Perhatikan bahwa tabel mungkin telah diurutkan ulang berdasarkan Jenis.\n")
+				} else {
+					fmt.Println("Gagal: Aset dengan jenis tersebut tidak ditemukan.")
+				}
 			} else {
-				fmt.Println("Gagal: Aset dengan nama tersebut tidak ditemukan.")
+				fmt.Println("Pilihan pencarian tidak valid.")
 			}
 
 		case 6:
-			fmt.Println("\n--- URUTKAN PORTOFOLIO (SELECTION SORT) ---")
-			selectionSortNilaiInvestasi(&portofolio, jumlahData, false)
-			fmt.Println("Sukses: Portofolio berhasil diurutkan berdasarkan Nilai Investasi (Ascending).")
+			fmt.Println("\n--- URUTKAN PORTOFOLIO ---")
+			fmt.Println("1. Berdasarkan Nilai Investasi (Selection Sort)")
+			fmt.Println("2. Berdasarkan Persentase Profit (Insertion Sort)")
+			fmt.Print("Pilih metode pengurutan (1/2): ")
+			var subMenu int
+			fmt.Scan(&subMenu)
 
+			if subMenu == 1 {
+				selectionSortNilaiInvestasi(&portofolio, jumlahData, false) // false = Ascending
+				fmt.Println("Sukses: Portofolio berhasil diurutkan berdasarkan Nilai Investasi (Terkecil ke Terbesar).")
+			} else if subMenu == 2 {
+				insertionSortPersentase(&portofolio, jumlahData, true) // true = Descending (Profit tertinggi di atas)
+				fmt.Println("Sukses: Portofolio berhasil diurutkan berdasarkan Persentase Profit (Terbesar ke Terkecil).")
+			} else {
+				fmt.Println("Pilihan pengurutan tidak valid.")
+			}
 		default:
 			fmt.Println("\nPilihan salah! Silakan masukkan angka menu yang valid (0-6).")
 		}
