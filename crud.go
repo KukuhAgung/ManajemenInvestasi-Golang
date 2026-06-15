@@ -3,32 +3,38 @@ package main
 import "fmt"
 
 func tambahAset(portfolio *tabInvestasi, jumlahData *int) {
-	var i int
-	if *jumlahData >= NMAX {
-		fmt.Println("Gagal: Kapasitas penyimpanan portofolio sudah penuh!")
+	var n, i, indeksBaru int
+
+	fmt.Print("Berapa banyak aset yang ingin ditambahkan? ")
+	fmt.Scan(&n)
+
+	if *jumlahData + n > NMAX {
+		fmt.Println("Gagal: Kapasitas penyimpanan portofolio tidak mencukupi!")
 		return
 	}
+	for i = 0; i < n; i++ {
+		indeksBaru = *jumlahData
+		
+		fmt.Printf("\n--- Input Data ke-%d ---\n", i+1)
+		(*portfolio)[indeksBaru].id = *jumlahData + 1
 
-	i = *jumlahData
+		fmt.Print("Masukkan Nama Aset : ")
+		fmt.Scan(&(*portfolio)[indeksBaru].namaAset)
+		fmt.Print("Masukkan Jenis Aset: ")
+		fmt.Scan(&(*portfolio)[indeksBaru].jenisAset)
+		fmt.Print("Masukkan Modal Awal: ")
+		fmt.Scan(&(*portfolio)[indeksBaru].modalAwal)
 
-	(*portfolio)[i].id = *jumlahData + 1
+		(*portfolio)[indeksBaru].hargaTerkini = (*portfolio)[indeksBaru].modalAwal
+		(*portfolio)[indeksBaru].nilaiInvestasi = (*portfolio)[indeksBaru].modalAwal
+		(*portfolio)[indeksBaru].keuntunganRupiah = 0.0
+		(*portfolio)[indeksBaru].persentaseKeuntungan = 0.0
 
-	fmt.Print("Masukkan Nama Aset : ")
-	fmt.Scan(&(*portfolio)[i].namaAset)
-	fmt.Print("Masukkan Jenis Aset: ")
-	fmt.Scan(&(*portfolio)[i].jenisAset)
-	fmt.Print("Masukkan Modal Awal: ")
-	fmt.Scan(&(*portfolio)[i].modalAwal)
+		hitungKeuntungan(&(*portfolio)[indeksBaru])
 
-	(*portfolio)[i].hargaTerkini = (*portfolio)[i].modalAwal
-	(*portfolio)[i].nilaiInvestasi = (*portfolio)[i].modalAwal
-	(*portfolio)[i].keuntunganRupiah = 0.0
-	(*portfolio)[i].persentaseKeuntungan = 0.0
-
-	hitungKeuntungan(&(*portfolio)[i])
-
-	*jumlahData++
-	fmt.Println("Sukses: Aset baru berhasil ditambahkan.")
+		*jumlahData++
+	}
+	fmt.Println("\nSukses: Seluruh aset baru berhasil ditambahkan.")
 }
 
 func hapusAset(portfolio *tabInvestasi, jumlahData *int, id int) {
