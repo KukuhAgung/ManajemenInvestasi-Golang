@@ -49,6 +49,5 @@ func binarySearchJenis(portofolio tabInvestasi, jumlahData int, keyword string) 
 			right = mid - 1
 		}
 	}
-
 	return -1
 }
